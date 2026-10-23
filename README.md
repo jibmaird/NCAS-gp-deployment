@@ -25,18 +25,19 @@ Requirements:
 - optionally `rapidfuzz` (`pip install rapidfuzz`), which makes the closest-match search about 30 times faster.
 
 Steps:
-1. Download version 1.0.0 of the script:
-   https://raw.githubusercontent.com/jibmaird/NCAS-gp-deployment/v1.0.0/map_indications.py
+1. Download version 1.0.1 of the script:
+   https://raw.githubusercontent.com/jibmaird/NCAS-gp-deployment/v1.0.1/map_indications.py
 2. Save it in the project folder that holds `gp_naps_manual_mapping.csv` and `gp_naps_lists.csv`.
 3. Check the download: `certutil -hashfile map_indications.py MD5` should print
-   `98ec642e9fc2c629abbf03719890dff0`.
+   `9f27aeb7727bf1d5d57906daaf58de0c`.
 
 The script needs no other installation steps: nothing is built, and no administrator rights are needed to run it.
 
 ## What it accesses
 
 - **Database:** `SELECT` queries only, on the two tables above, using the user's Windows login. It never writes to the
-  database.
+  database. The optional `--rx-condition` filter is checked so that it can only narrow a query: it rejects `;` and
+  SQL comments.
 - **Files:** it reads the two reference CSVs and writes its results as CSV and text files into a new folder under
   the current directory.
 - **Network:** the database connection is its only one.

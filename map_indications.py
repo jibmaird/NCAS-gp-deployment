@@ -478,6 +478,8 @@ def main():
     ap.add_argument('--reference-dir', default=SCRIPT_DIR, help='folder with the two gp_naps_*.csv files')
     ap.add_argument('--out-dir', help='default: indication_mapping_<timestamp>')
     args = ap.parse_args()
+    if args.rx_condition and re.search(r';|--|/\*', args.rx_condition):
+        sys.exit('--rx-condition must be a single condition, without ";" or SQL comments: the script only reads.')
     args.date_to_excl = args.date_to + datetime.timedelta(days=1)
     RX_HIST, ENC_RSN = bracketed(args.rx_table), bracketed(args.enc_table)
     out_dir = args.out_dir or f'indication_mapping_{datetime.datetime.now():%Y%m%d_%H%M%S}'
