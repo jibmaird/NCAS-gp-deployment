@@ -1,0 +1,2 @@
+# Keep files byte-identical on every platform, so the published MD5 checksum always matches.
+* -text
